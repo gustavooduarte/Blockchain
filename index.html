@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Atividade Blockchain</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Blockchain -->
+        <script src="sha256.js"></script>
+        <script src="blockchain.js"></script>
+        <script src="index.js"></script>
+
+    </head>
+
+    <body>
+        <!-- "Menu" da aplicacão -->
+        <div class="m-3 mb-5">
+            <h2>Blockchain <span class='text-muted' id="txtDificuldade">(dificuldade: 1)<span></h2>
+
+            <div class="d-flex justify-content-around">
+                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modalInsercao">
+                    Inserir Bloco
+                </button>
+
+                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modalDificuldade">
+                    Mudar Dificuldade
+                </button>
+
+                <button class="btn btn-success" onclick="verificarBlockchain()">Verificar Blockchain</button>
+
+                <button class="btn btn-danger" onclick="limparBlockchain()">Limpar Blockchain</button>
+            </div>
+
+            <!-- Div que apresenta o resultado da verificação -->
+            <div id='msgVerificacao' class='mt-2'></div>
+
+            <!-- Div para mostrar os blocos inseridos -->
+            <div class="d-flex flex-wrap mt-3" id="blockchain"></div>
+        </div>
+
+
+        <!-- ======================================================================================
+        ##################################### Janelas Modais ######################################
+        ======================================================================================== -->
+        <!-- Modal Inserção Bloco -->
+        <div class="modal fade" id="modalInsercao">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Inserção Bloco</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label>Dados</label>
+                        <input type="text" class="form-control" id="dados">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="inserirBloco()">Inserir bloco</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Selecionar Dificuldade -->
+        <div class="modal fade" id="modalDificuldade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Selecionar dificuldade</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nova dificuldade</label>
+                        <input type="number" class="form-control" id="dificuldade">
+                        <small class="form-text text-muted">
+                            Selecionar uma nova dificuldade irá <strong> excluir </strong> a blockchain atual
+                        </small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                            onclick="atualizarDificuldade()">
+                            Atualizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edicao Bloco -->
+        <div class="modal fade" id="modalEdicao">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edição Bloco</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label>Bloco</label>
+                        <input class="form-control" id="edicaoBloco" readonly>
+
+                        <label>Index</label>
+                        <input type="number" class="form-control" id="edicaoIndex">
+
+                        <label>Dados</label>
+                        <input type="text" class="form-control" id="edicaoDados">
+
+                        <label>Hash </label>
+                        <input type="text" class="form-control" id="edicaoHash">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="atualizarBloco()">
+                            Atualizar bloco
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+
+
+
+</html>
